@@ -9,7 +9,7 @@ namespace AtelierConges.Metier
     public class Planning
     {
         // Liste c# = tableau numéraire en PHP
-        private List<DemandeConge> listeConge = new List<DemandeConge>;
+        private List<DemandeConge> listeConges = new List<DemandeConge>();
         // Dictionary C# = tableau associatif en PHP
         private Dictionary<string, DemandeConge> demandeConge = new Dictionary<string, DemandeConge>(); 
 
@@ -17,8 +17,10 @@ namespace AtelierConges.Metier
     
         public void Ajouter(DemandeConge conge)
         {
-            listeConge.Add(conge);
+            listeConges.Add(conge);
         }
+
+        public List<DemandeConge> Demandes => listeConges;
     }
 
 }

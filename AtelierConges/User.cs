@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace AtelierConges.Metier
 {
@@ -18,10 +19,13 @@ namespace AtelierConges.Metier
     /// </example>
     public class User
     {
-        private string firstName { get; set; };
-        private string lastName { get; set; };
-        private string email { get; set; };
-        private User? manager { get; set; } = null;
+        [MaxLength(50), Required]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
+        [EmailAddress]
+        public string Email { get; set; }
+        public User? Manager { get; set; } = null;
+        
     }
 }

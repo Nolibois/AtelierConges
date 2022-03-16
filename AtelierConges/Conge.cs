@@ -1,5 +1,4 @@
-﻿using AtelierConges.metier;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +8,13 @@ namespace AtelierConges.Metier
 {
     public class DemandeConge
     {
-        private EtatDemande etat = new EtatDemande();
+        private EtatDemande etat = EtatDemande.Brouillon;
         private DateTime debut = DateTime.Today;
         private TimeSpan duree = TimeSpan.FromDays(1) ;
         private string? commentaire = null;
-        private User? employe;
+        private User employe;
 
-        public void DemandeConge(User employe)
+        public DemandeConge(User employe)
         {
             this.employe = employe;
         }
@@ -82,7 +81,7 @@ namespace AtelierConges.Metier
             if (ok)
             {
                 etat = EtatDemande.Approuve;
-                this.commentaire = "Votre demande de congés a été acceptée."
+                this.commentaire = "Votre demande de congés a été acceptée.";
             }
             else
             {
