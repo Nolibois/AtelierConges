@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using AtelierConges.Metier;
+
+@* model permet de préciser le type de Model*@
+@model AtelierConges.Metier.Planning;
+
+<h1>Congés de l'année</h1>
+<p>Vous trouverez en suivant vos congés</p>
+
+<div class="container my-4">
+    <table class="table">
+        <thead class="bg-info">
+            <tr>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Etat</th>
+                <th scope="col" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                @foreach (var conge in Model.Demandes)
+                {
+                    <tr>
+                        <td>@conge.Debut.Date.ToShortDateString()</td>
+                        <td>@conge.Fin.Date.ToShortDateString()</td>
+                        <td>@conge.Duree.TotalDays</td>
+                        <td>@conge.Etat</td>
+                        @if (conge.Etat == EtatDemande.EnAttente)
+                        {
+                            <td>
+                                 <a asp-controller="Conge" asp-action="Accepter" asp-route-id="@conge.Id" class="btn btn-primary">Accepter</a>
+                            </td>
+                            <td>
+                                <a asp-controller="Conge" asp-action="Rejeter" asp-route-id="@conge.Id" class="btn">Refuser</a>
+                            </td>
+                        }else{
+                            <td></td>
+                            <td></td>
+                        }
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>

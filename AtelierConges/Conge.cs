@@ -14,10 +14,13 @@ namespace AtelierConges.Metier
         private string? commentaire = null;
         private User employe;
 
-        public DemandeConge(User employe)
+        public DemandeConge(int id, User employe)
         {
+            this.Id = id;
             this.employe = employe;
         }
+
+        public int Id { get; private set; }
         
         public EtatDemande Etat => etat;
 

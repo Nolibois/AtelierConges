@@ -11,14 +11,14 @@ var rogerIbernatus = new User()
 
 var yakupS = new User()
 {
-    FirstName = "Yakup",
-    LastName = "Senel",
-    Email = "yakup@senel.com",
-    Manager = rogerIbernatus
+    FirstName   = "Yakup",
+    LastName    = "Senel",
+    Email       = "yakup@senel.com",
+    Manager     = rogerIbernatus
 };
 
 // Nouvelle demande de congé
-var dem1 = new DemandeConge(rogerIbernatus);
+var dem1 = new DemandeConge(1, rogerIbernatus);
 
 // Pose la demande avec (une instance de la date, et une instance de la durée = new TimeSpan(7, 0, 0))
 dem1.Poser(new DateTime(2022, 7, 1), TimeSpan.FromDays(7));
@@ -53,9 +53,8 @@ do
                 Console.WriteLine($"Durée: {duree}");
 
                 // Créer une demande de congés
-                DemandeConge nouvelleDemande = new DemandeConge(rogerIbernatus);
+                DemandeConge nouvelleDemande = new DemandeConge(1, rogerIbernatus);
                 nouvelleDemande.Poser(debut, TimeSpan.FromDays(duree));
-                nouvelleDemande.Envoyer();
                 Console.WriteLine($"Etat de votre demande: {nouvelleDemande.Etat}");
 
                 // Ajouter au planning
@@ -69,7 +68,11 @@ do
             Console.WriteLine("Liste des Demandes de congés:");
             foreach(var conge in planning.Demandes)
             {
-                Console.WriteLine($"Du: {conge.Debut:D} au {conge.Fin:D}, durée: {conge.Duree.TotalDays}j, Etat: {conge.Etat}");
+                Console.WriteLine(
+                    $"Du:   {conge.Debut:D} au {conge.Fin:D}, " +
+                    $"durée:{conge.Duree.TotalDays}j, " +
+                    $"Etat: {conge.Etat}"
+                );
             }
             break;
 
